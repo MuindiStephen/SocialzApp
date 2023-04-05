@@ -18,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import coil.transform.CircleCropTransformation
 import com.steve_md.socialsapp.model.Posts
 import com.steve_md.socialsapp.ui.theme.SocialsAppTheme
 import com.steve_md.socialsapp.viewmodel.PostsViewModel
@@ -46,6 +49,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun AllPosts(postList: List<Posts>) {
     LazyColumn {
@@ -55,7 +59,7 @@ fun AllPosts(postList: List<Posts>) {
     }
 }
 
-
+@ExperimentalCoilApi
 @Composable
 fun Posts(posts: Posts) {
   Card(
@@ -72,15 +76,18 @@ fun Posts(posts: Posts) {
                   .padding(8.dp)
                   .fillMaxSize()
           ) {
+           
               Image(
-                  modifier = Modifier
-                      .fillMaxHeight()
-                      .weight(0.2f),
-                  painter = painterResource
-                      (id = R.drawable.ic_launcher_background),
-                  contentDescription = null
-              )
+                  painter = rememberImagePainter(
+                      data = posts.url,
 
+                      builder = {
+                          coil.size.Scale.FILL
+                          transformations(CircleCropTransformation())
+                      }
+                  ),
+                  contentDescription = posts.title
+              )
               Column(
                   verticalArrangement = Arrangement.Center,
                   modifier = Modifier
@@ -90,7 +97,7 @@ fun Posts(posts: Posts) {
                   Text(
                       style = MaterialTheme.typography.subtitle1,
                       fontWeight = FontWeight.Bold,
-                      text = "${posts.title}"
+                      text = posts.title
                   )
                   Text(
                       style = MaterialTheme.typography.h3,
@@ -104,8 +111,7 @@ fun Posts(posts: Posts) {
                   )
               }
            }
-      }
-
+      } 
   }
 }
 

@@ -1,4 +1,4 @@
-package com.steve_md.socialsapp.ui.theme
+kpackage com.steve_md.socialsapp.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
