@@ -3,16 +3,32 @@ package com.steve_md.socialsapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.activity.viewModels
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import com.steve_md.socialsapp.model.Posts
 import com.steve_md.socialsapp.ui.theme.SocialsAppTheme
+import com.steve_md.socialsapp.viewmodel.PostsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val postsViewModel : PostsViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -22,22 +38,75 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                   // AllPosts(postList = )
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
 
-@Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
-    SocialsAppTheme {
-        Greeting("Android")
+fun AllPosts(postList: List<Posts>) {
+    LazyColumn {
+        items(postList) { item: Posts ->
+            Posts(posts = item)
+        }
     }
 }
+
+
+@Composable
+fun Posts(posts: Posts) {
+  Card(
+      modifier = Modifier
+          .fillMaxWidth()
+          .padding(16.dp)
+          .height(150.dp),
+      shape = RoundedCornerShape(10.dp),
+      elevation = 6.dp
+  ) {
+      Surface {
+          Row(
+              modifier = Modifier
+                  .padding(8.dp)
+                  .fillMaxSize()
+          ) {
+              Image(
+                  modifier = Modifier
+                      .fillMaxHeight()
+                      .weight(0.2f),
+                  painter = painterResource
+                      (id = R.drawable.ic_launcher_background),
+                  contentDescription = null
+              )
+
+              Column(
+                  verticalArrangement = Arrangement.Center,
+                  modifier = Modifier
+                      .fillMaxHeight()
+                      .padding(4.dp)
+              ) {
+                  Text(
+                      style = MaterialTheme.typography.subtitle1,
+                      fontWeight = FontWeight.Bold,
+                      text = "${posts.title}"
+                  )
+                  Text(
+                      style = MaterialTheme.typography.h3,
+                      fontWeight = FontWeight.Bold,
+                      text = "${posts.albumId}"
+                  )
+                  Text(
+                      style = MaterialTheme.typography.h3,
+                      fontWeight = FontWeight.Bold,
+                      text = "${posts.id}"
+                  )
+              }
+           }
+      }
+
+  }
+}
+
+
