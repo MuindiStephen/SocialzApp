@@ -41,7 +41,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                   // AllPosts(postList = )
+                    val allposts = postsViewModel.postsResponse
+                    postsViewModel.getAllPosts()
+                    
+                    AllPosts(postList = allposts)
                 }
             }
         }
