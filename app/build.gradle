@@ -37,7 +37,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.1.1'
+        kotlinCompilerExtensionVersion '1.4.0'
     }
     packagingOptions {
         resources {
@@ -47,7 +47,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation 'androidx.activity:activity-compose:1.7.0'
@@ -64,7 +63,20 @@ dependencies {
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
 
-    //
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // Gson Convertor
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // OkHttp3
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+
+    // Http Logging Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 
 }
