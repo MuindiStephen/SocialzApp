@@ -79,4 +79,11 @@ dependencies {
     // Http Logging Interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
 
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
+}
+
+kapt {
+    correctErrorTypes true
 }
