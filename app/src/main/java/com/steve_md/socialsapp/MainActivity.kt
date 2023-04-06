@@ -41,10 +41,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    val allposts = postsViewModel.postsResponse
+                    val allPosts = postsViewModel.postsResponse
                     postsViewModel.getAllPosts()
                     
-                    AllPosts(postList = allposts)
+                    AllPosts(postList = allPosts)
                 }
             }
         }
@@ -99,18 +99,24 @@ fun Posts(posts: Posts) {
                       .padding(4.dp)
               ) {
                   Text(
+                      modifier = Modifier
+                          .padding(2.dp),
                       style = MaterialTheme.typography.subtitle1,
                       fontWeight = FontWeight.Bold,
                       text = posts.title
                   )
                   Text(
+                      modifier = Modifier
+                          .padding(2.dp),
                       style = MaterialTheme.typography.h3,
-                      fontWeight = FontWeight.Bold,
+                      fontWeight = FontWeight.Medium,
                       text = "${posts.albumId}"
                   )
                   Text(
+                      modifier = Modifier
+                          .padding(2.dp),
                       style = MaterialTheme.typography.h3,
-                      fontWeight = FontWeight.Bold,
+                      fontWeight = FontWeight.Medium,
                       text = "${posts.id}"
                   )
               }
