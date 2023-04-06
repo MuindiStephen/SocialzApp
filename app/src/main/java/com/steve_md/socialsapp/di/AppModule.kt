@@ -40,7 +40,6 @@ object AppModule {
     @Provides
     @Singleton
     fun providesRetrofit(
-        okHttpClient: OkHttpClient,
         gson: Gson
     ): Retrofit {
         return Retrofit.Builder()
