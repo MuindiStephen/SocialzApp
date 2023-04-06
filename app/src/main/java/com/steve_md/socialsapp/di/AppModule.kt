@@ -40,7 +40,7 @@ object AppModule {
     @Provides
     @Singleton
     fun providesRetrofit(
-        gson: Gson
+//        gson: Gson
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
