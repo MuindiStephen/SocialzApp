@@ -43,7 +43,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val allPosts = postsViewModel.postsResponse
                     postsViewModel.getAllPosts()
-                    
+
+                    // Get a list of all Posts
                     AllPosts(postList = allPosts)
                 }
             }
