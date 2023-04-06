@@ -17,6 +17,7 @@ class PostsViewModel @Inject constructor(
   private val socialsRetrofitService: SocialsRetrofitService
 ) : ViewModel(){
 
+    // VieMmodel to call the ApiService
     var postsResponse : List<Posts> by mutableStateOf(listOf())
     var errorMessage : String by mutableStateOf("")
 

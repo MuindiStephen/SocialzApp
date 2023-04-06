@@ -15,10 +15,14 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
+import coil.size.Scale
 import coil.transform.CircleCropTransformation
 import com.steve_md.socialsapp.model.Posts
 import com.steve_md.socialsapp.ui.theme.SocialsAppTheme
@@ -83,13 +87,11 @@ fun Posts(posts: Posts) {
           ) {
            
               Image(
-                  painter = rememberImagePainter(
-                      data = posts.url,
-
-                      builder = {
-                          coil.size.Scale.FILL
+                  painter = rememberAsyncImagePainter(
+                      ImageRequest.Builder(LocalContext.current).data(data = posts.url).apply(block = fun ImageRequest.Builder.() {
+                          Scale.FILL
                           transformations(CircleCropTransformation())
-                      }
+                      }).build()
                   ),
                   contentDescription = posts.title
               )
